@@ -1,0 +1,14 @@
+{
+  "width": 1600,
+  "height": 1200,
+  "background": "#FFFFFF",
+  "font_family": "Microsoft YaHei, Noto Sans CJK SC, sans-serif",
+  "texts": [
+    {"x": 80, "y": 90, "text": "场地分析", "font_size": 48, "font_weight": 700, "color": "#222222"},
+    {"x": 80, "y": 135, "text": "SITE ANALYSIS", "font_size": 20, "font_weight": 400, "color": "#777777"},
+    {"x": 1200, "y": 260, "text": "01  建筑肌理\n提取现状建筑实体与开放空间关系", "font_size": 24, "font_weight": 400, "color": "#333333"}
+  ],
+  "leader_lines": [
+    {"x1": 1000, "y1": 260, "x2": 1170, "y2": 260, "color": "#8A8F95", "width": 1.5}
+  ]
+}

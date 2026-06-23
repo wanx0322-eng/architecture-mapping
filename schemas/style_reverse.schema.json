@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.example/architecture-mapping-zh/style_reverse.schema.json",
+  "title": "Style Reverse Engineering",
+  "type": "object",
+  "required": ["aesthetic_overview", "technical_execution", "visual_language", "surface_and_tactility", "style_prompt_tags"],
+  "properties": {
+    "aesthetic_overview": {"type": "object", "required": ["core_style", "mood_and_vibe"], "properties": {"core_style": {"type": "string"}, "mood_and_vibe": {"type": "string"}}, "additionalProperties": false},
+    "technical_execution": {
+      "type": "object",
+      "properties": {
+        "photography_look": {"type": "object"},
+        "artistic_expression": {"type": "object"},
+        "cgi_3d_look": {"type": "object"},
+        "architectural_graphics": {"type": "object"}
+      },
+      "additionalProperties": false
+    },
+    "visual_language": {"type": "object", "required": ["color_grading", "lighting_setup", "composition_rules"], "properties": {"color_grading": {"type": "array", "items": {"type": "string"}}, "lighting_setup": {"type": "string"}, "composition_rules": {"type": "string"}}, "additionalProperties": false},
+    "surface_and_tactility": {"type": "object", "required": ["material_properties", "texture_details"], "properties": {"material_properties": {"type": "string"}, "texture_details": {"type": "string"}}, "additionalProperties": false},
+    "style_prompt_tags": {"type": "array", "minItems": 10, "maxItems": 15, "items": {"type": "string"}, "uniqueItems": true}
+  },
+  "additionalProperties": false
+}
+

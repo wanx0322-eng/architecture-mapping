@@ -1,0 +1,27 @@
+﻿{
+  "schema_version": "1.0.0",
+  "orchestrator": "architecture-mapping-zh",
+  "experts": [
+    {"id": "brief-intake", "path": "subskills/01-brief-intake/INSTRUCTIONS.md", "capabilities": ["interview", "production_brief"], "mandatory_for": ["image_generation", "image_edit", "board_layout", "final_prompt"]},
+    {"id": "evidence-geometry", "path": "subskills/02-evidence-geometry/INSTRUCTIONS.md", "capabilities": ["evidence", "geometry", "data_fidelity"], "mandatory_for": ["mapping", "site_analysis", "F2", "F3"]},
+    {"id": "analysis-taxonomy", "path": "subskills/03-analysis-taxonomy/INSTRUCTIONS.md", "capabilities": ["classification", "subtype", "analysis_logic"], "mandatory_for": ["analysis", "reverse_engineering", "image_generation"]},
+    {"id": "figure-ground-graphics", "path": "subskills/04-figure-ground-graphics/INSTRUCTIONS.md", "capabilities": ["figure_ground", "linework", "color", "projection"], "mandatory_for": ["mapping", "diagram", "board_layout"]},
+    {"id": "style-layout", "path": "subskills/05-style-layout/INSTRUCTIONS.md", "capabilities": ["art_style", "layout", "typography"], "mandatory_for": ["board_layout", "render", "collage"]},
+    {"id": "model-production", "path": "subskills/06-model-production/INSTRUCTIONS.md", "capabilities": ["prompt_adapter", "image_generation", "chinese_overlay"], "mandatory_for": ["image_generation", "image_edit", "final_prompt"]},
+    {"id": "quality-critic", "path": "subskills/07-quality-critic/INSTRUCTIONS.md", "capabilities": ["score", "veto", "compare", "qa", "rubric_loop"], "mandatory_for": ["final_output", "evolution"]},
+    {"id": "evolution-governance", "path": "subskills/08-evolution-governance/INSTRUCTIONS.md", "capabilities": ["counter", "reflection", "capability_evolver", "deletion_governance"], "mandatory_for": ["evolution_due", "repeated_failure"]},
+    {"id": "knowledge-retrieval", "path": "subskills/09-knowledge-retrieval/INSTRUCTIONS.md", "capabilities": ["rag", "source_trace", "reference_retrieval"], "mandatory_for": ["reverse_engineering", "mapping", "style_reference"]},
+    {"id": "programmatic-validator", "path": "subskills/10-programmatic-validator/INSTRUCTIONS.md", "capabilities": ["constraint_dsl", "grammar_validation", "schema_validation", "repair_routing"], "mandatory_for": ["production_ready", "final_output", "evolution"]}
+  ],
+  "quality_weights": {
+    "evidence_geometry": 25,
+    "analysis_logic": 20,
+    "figure_ground_hierarchy": 20,
+    "legibility": 15,
+    "style_consistency": 10,
+    "production_readiness": 10
+  },
+  "minimum_delivery_score": 80,
+  "user_choice_score_delta": 5
+}
+

@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "root": "board",
+  "nonterminals": {
+    "board": ["header", "panel+", "global_legend?", "footer?"],
+    "panel": ["panel_title", "diagram", "annotation*", "panel_legend?"],
+    "diagram": ["ground", "subject+", "relation*", "evidence_marker*"],
+    "ground": ["boundary", "context", "base_geometry"],
+    "subject": ["area|line|node|volume|image"],
+    "relation": ["arrow|connector|sequence|containment|alignment"],
+    "annotation": ["id", "leader?", "label", "short_note?"],
+    "legend": ["symbol+", "label+", "unit?", "source?", "date?"]
+  },
+  "layer_order": ["paper", "context", "base_geometry", "analysis_fields", "subject_geometry", "relations", "symbols", "labels", "titles"],
+  "invariants": [
+    "标题和图例不得被分析图层遮挡",
+    "同组序列图锁定范围、视角、比例与图例语义",
+    "每个颜色与线型必须对应稳定语义",
+    "箭头必须有起点、终点和方向语义",
+    "无来源数据不得生成单位、数值或精确边界",
+    "长中文不在生成图中渲染，进入可编辑后期层"
+  ],
+  "composition_patterns": {
+    "sequence_2x3": ["header", "grid(2,3)", "step_caption", "shared_legend"],
+    "layered_explosion": ["header", "axonometric_stack", "side_labels", "global_legend", "scale_north"],
+    "hero_plus_evidence": ["header", "hero_map", "evidence_cards", "section_strip", "conclusion"],
+    "atlas_small_multiples": ["header", "shared_base", "small_multiples", "comparison_legend", "synthesis"]
+  }
+}

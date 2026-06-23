@@ -1,0 +1,8 @@
+Pillow>=10.0
+ImageHash>=4.3
+jsonschema>=4.21
+requests>=2.31
+numpy>=1.26
+scikit-learn>=1.4
+PyYAML>=6.0
+PyMuPDF>=1.27

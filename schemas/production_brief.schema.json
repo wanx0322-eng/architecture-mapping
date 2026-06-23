@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.example/architecture-mapping-zh/production_brief.schema.json",
+  "title": "Architecture Mapping Production Brief",
+  "type": "object",
+  "required": [
+    "schema_version", "rounds_completed", "question_rounds", "design_goal",
+    "classification", "fidelity_level", "visual_system", "output_spec",
+    "confirmed", "defaults", "unknowns", "forbidden_fabrication", "ready_to_produce"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "rounds_completed": {"type": "integer", "minimum": 3, "maximum": 7},
+    "question_rounds": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "required": ["round", "focus", "questions", "answers", "resolved_decisions"],
+        "properties": {
+          "round": {"type": "integer", "minimum": 1, "maximum": 7},
+          "focus": {"type": "string"},
+          "questions": {"type": "array", "minItems": 1, "maxItems": 3, "items": {"type": "string"}},
+          "answers": {"type": "array", "items": {"type": "string"}},
+          "resolved_decisions": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "design_goal": {"type": "string"},
+    "source_assets": {"type": "array", "items": {"type": "string"}},
+    "classification": {
+      "type": "object",
+      "required": ["primary_category", "drawing_subtype", "drawing_forms"],
+      "properties": {
+        "primary_category": {"enum": ["场地区位", "历史文化", "现状问题", "手绘构思", "体块生成", "功能流线", "爆炸图", "人群行为", "效果图"]},
+        "drawing_subtype": {"type": "string"},
+        "drawing_forms": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "fidelity_level": {"enum": ["F0", "F1", "F2", "F3"]},
+    "detail_levels": {"type": "array", "items": {"enum": ["D0", "D1", "D2", "D3", "D4"]}, "uniqueItems": true},
+    "visual_system": {
+      "type": "object",
+      "required": ["figure_ground", "projection", "layout", "palette", "line_symbol", "art_style", "text_system"],
+      "properties": {
+        "figure_ground": {"type": "object"},
+        "projection": {"type": "string"},
+        "layout": {"type": "object"},
+        "palette": {"type": "object"},
+        "line_symbol": {"type": "object"},
+        "art_style": {"type": "object"},
+        "text_system": {"type": "object"}
+      },
+      "additionalProperties": false
+    },
+    "output_spec": {
+      "type": "object",
+      "required": ["canvas", "resolution", "color_mode", "formats", "editable_text"],
+      "properties": {
+        "canvas": {"type": "string"},
+        "resolution": {"type": "string"},
+        "color_mode": {"enum": ["RGB", "CMYK", "灰度"]},
+        "formats": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "editable_text": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "confirmed": {"type": "array", "items": {"type": "string"}},
+    "defaults": {"type": "array", "items": {"type": "string"}},
+    "unknowns": {"type": "array", "items": {"type": "string"}},
+    "forbidden_fabrication": {"type": "array", "items": {"type": "string"}},
+    "ready_to_produce": {"type": "boolean"}
+  },
+  "additionalProperties": false
+}

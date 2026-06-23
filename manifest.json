@@ -1,0 +1,16 @@
+{
+  "name": "architecture-mapping-zh",
+  "adapter_version": "0.2.0",
+  "generated_for": "codex",
+  "generated_date": "2026-06-23",
+  "packaging": {
+    "type": "single_codex_router_skill",
+    "entrypoint": "skills/architecture-mapping-zh/SKILL.md",
+    "internal_experts": "skills/architecture-mapping-zh/subskills/*/INSTRUCTIONS.md"
+  },
+  "runtime_notes": [
+    "Codex should register only the root architecture-mapping-zh skill.",
+    "Subskill expert files are internal INSTRUCTIONS.md documents and should not appear as separate shortcut skills.",
+    "The agents/openai.yaml interface metadata is present so the Codex shortcut menu can display the skill."
+  ]
+}

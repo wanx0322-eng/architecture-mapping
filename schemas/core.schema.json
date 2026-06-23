@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.example/architecture-mapping-zh/core.schema.json",
+  "title": "Architecture Mapping Core Record",
+  "type": "object",
+  "required": ["schema_version", "record_id", "source", "asset", "classification", "analysis", "quality"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "record_id": {"type": "string", "minLength": 1},
+    "source": {
+      "type": "object",
+      "required": ["platform", "collected_at"],
+      "properties": {
+        "platform": {"enum": ["pinterest", "local_archive"]},
+        "pin_id": {"type": ["string", "null"]},
+        "pin_url": {"type": "string", "format": "uri"},
+        "outbound_url": {"type": ["string", "null"], "format": "uri"},
+        "title": {"type": ["string", "null"]},
+        "visible_description": {"type": ["string", "null"]},
+        "search_url": {"type": "string", "format": "uri"},
+        "archive_name": {"type": "string", "minLength": 1},
+        "source_path": {"type": "string", "minLength": 1},
+        "relative_path": {"type": "string", "minLength": 1},
+        "source_type": {"enum": ["image", "pdf_page"]},
+        "pdf_page": {"type": ["integer", "null"], "minimum": 1},
+        "total_pages": {"type": ["integer", "null"], "minimum": 1},
+        "collected_at": {"type": "string", "format": "date-time"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"platform": {"const": "pinterest"}}},
+          "then": {"required": ["pin_url"]}
+        },
+        {
+          "if": {"properties": {"platform": {"const": "local_archive"}}},
+          "then": {"required": ["archive_name", "source_path", "relative_path", "source_type"]}
+        }
+      ],
+      "additionalProperties": false
+    },
+    "asset": {
+      "type": "object",
+      "required": ["thumbnail_path", "sha256", "phash64", "width", "height"],
+      "properties": {
+        "thumbnail_path": {"type": "string"},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "phash64": {"type": "string", "pattern": "^[a-f0-9]{16}$"},
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    },
+    "classification": {
+      "type": "object",
+      "required": ["status", "primary_category", "secondary_categories", "relevance_score", "confidence"],
+      "properties": {
+        "status": {"enum": ["accepted", "rejected", "needs_review"]},
+        "primary_category": {"enum": ["场地区位", "历史文化", "现状问题", "手绘构思", "体块生成", "功能流线", "爆炸图", "人群行为", "效果图", "不相关"]},
+        "secondary_categories": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "relevance_score": {"type": "number", "minimum": 0, "maximum": 1},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "evidence": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "analysis": {
+      "type": "object",
+      "required": ["base_map_type", "projection", "scale", "chart_content", "analysis_logic", "layout", "color_style", "line_symbols", "text_system", "graphic_expression"],
+      "properties": {
+        "base_map_type": {"type": "string"},
+        "projection": {"type": "string"},
+        "scale": {"type": "string"},
+        "chart_content": {"type": "array", "items": {"type": "string"}},
+        "drawing_subtype": {"type": "string"},
+        "drawing_forms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["form", "role"],
+            "properties": {
+              "form": {"type": "string"},
+              "role": {"enum": ["主图", "辅助图", "证据图", "结论图", "策略图", "氛围图"]}
+            },
+            "additionalProperties": false
+          }
+        },
+        "image_detail_system": {
+          "type": "object",
+          "properties": {
+            "primary_level": {"enum": ["D0", "D1", "D2", "D3", "D4", "未知"]},
+            "secondary_levels": {"type": "array", "items": {"enum": ["D0", "D1", "D2", "D3", "D4"]}, "uniqueItems": true},
+            "viewing_distance": {"type": "string"},
+            "critical_details": {"type": "array", "items": {"type": "string"}},
+            "suppressed_details": {"type": "array", "items": {"type": "string"}}
+          },
+          "additionalProperties": false
+        },
+        "figure_ground_system": {
+          "type": "object",
+          "properties": {
+            "ground_carrier": {"type": "string"},
+            "figure_subject": {"type": "string"},
+            "context_fade": {"type": "string"},
+            "contrast_channels": {"type": "array", "items": {"type": "string"}},
+            "edge_strategy": {"type": "string"},
+            "depth_order": {"type": "array", "items": {"type": "string"}},
+            "occlusion_rule": {"type": "string"}
+          },
+          "additionalProperties": false
+        },
+        "art_style_system": {
+          "type": "object",
+          "properties": {
+            "medium": {"type": "array", "items": {"type": "string"}},
+            "edge_quality": {"type": "string"},
+            "texture": {"type": "string"},
+            "lighting": {"type": "string"},
+            "shadow": {"type": "string"},
+            "compositing": {"type": "string"},
+            "atmosphere": {"type": "string"},
+            "anti_style": {"type": "array", "items": {"type": "string"}}
+          },
+          "additionalProperties": false
+        },
+        "technical_execution": {
+          "type": "object",
+          "properties": {
+            "fidelity_level": {"enum": ["F0", "F1", "F2", "F3", "未知"]},
+            "line_weights_mm": {"type": "array", "items": {"type": "number", "minimum": 0}},
+            "map_requirements": {"type": "array", "items": {"type": "string"}},
+            "print_size": {"type": "string"},
+            "dpi": {"type": ["integer", "null"], "minimum": 1},
+            "color_mode": {"enum": ["RGB", "CMYK", "灰度", "未知"]},
+            "editable_formats": {"type": "array", "items": {"type": "string"}}
+          },
+          "additionalProperties": false
+        },
+        "framework": {"type": "string"},
+        "map_description": {"type": "string"},
+        "analysis_logic": {"type": "array", "items": {"type": "string"}},
+        "layout": {"type": "object"},
+        "color_style": {"type": "object"},
+        "line_symbols": {"type": "object"},
+        "text_system": {"type": "object"},
+        "graphic_expression": {"type": "object"},
+        "unsupported_claims": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "quality": {
+      "type": "object",
+      "required": ["human_review_status", "warnings"],
+      "properties": {
+        "human_review_status": {"enum": ["pending", "approved", "rejected", "recheck"]},
+        "warnings": {"type": "array", "items": {"type": "string"}},
+        "duplicate_of": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

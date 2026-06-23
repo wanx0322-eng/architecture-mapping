@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "retrieval_policy": {"top_k": 8, "minimum_distinct_sources": 2, "require_source_id": true, "allow_unverified_claims": false},
+  "collections": [
+    {"id": "taxonomy", "type": "normative", "path": "references/taxonomy.md", "use_for": ["primary_class", "secondary_tags"]},
+    {"id": "drawing-types", "type": "normative", "path": "references/drawing-types.md", "use_for": ["drawing_subtype", "drawing_forms"]},
+    {"id": "technical-detail", "type": "normative", "path": "references/technical-detail-spec.md", "use_for": ["F_level", "D_level", "figure_ground", "technical_output"]},
+    {"id": "interaction", "type": "normative", "path": "references/interaction-protocol.md", "use_for": ["question_rounds", "production_gate"]},
+    {"id": "dataset-observations", "type": "empirical_summary", "path": "references/dataset-observations.md", "use_for": ["layout_prior", "style_prior", "line_color_prior"]},
+    {"id": "representatives", "type": "sample_index", "path": "dataset/reports/representatives.json", "optional": true, "use_for": ["visual_reference", "cluster_center"]},
+    {"id": "local-archives", "type": "source_index", "path": "dataset/indexes/local_archive_assets.jsonl", "optional": true, "use_for": ["competition_board_reference"]},
+    {"id": "pinterest-records", "type": "source_index", "path": "dataset/records", "optional": true, "use_for": ["mapping_reference"]}
+  ],
+  "citation_shape": {"required": ["source_id", "record_or_section", "adopted_feature", "confidence"], "forbidden": ["copy_project_content", "invent_source"]}
+}

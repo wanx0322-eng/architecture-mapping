@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.example/architecture-mapping-zh/evolution_proposal.schema.json",
+  "title": "Audited Skill Evolution Proposal",
+  "type": "object",
+  "required": ["schema_version", "proposal_id", "trigger", "evidence", "diagnosis", "additions", "modifications", "deletions", "tests", "rollback_plan", "requires_user_approval", "status"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "proposal_id": {"type": "string", "minLength": 1},
+    "trigger": {"enum": ["ten_conversations", "ten_images", "repeated_failure", "manual"]},
+    "evidence": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "diagnosis": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "additions": {"type": "array", "items": {"type": "object"}},
+    "modifications": {"type": "array", "items": {"type": "object"}},
+    "deletions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["target", "target_type", "reason", "reference_scan", "replacement", "migration", "rollback"],
+        "properties": {
+          "target": {"type": "string"},
+          "target_type": {"enum": ["file", "field", "document", "schema_property"]},
+          "reason": {"type": "string"},
+          "reference_scan": {"type": "array", "items": {"type": "string"}},
+          "replacement": {"type": "string"},
+          "migration": {"type": "string"},
+          "rollback": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "tests": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "rollback_plan": {"type": "string", "minLength": 1},
+    "requires_user_approval": {"type": "boolean"},
+    "user_approval": {"type": ["object", "null"]},
+    "status": {"enum": ["draft", "reviewed", "approved", "rejected", "applied", "rolled_back"]}
+  },
+  "additionalProperties": false
+}

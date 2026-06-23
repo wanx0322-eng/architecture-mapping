@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.example/architecture-mapping-zh/constraint_dsl.schema.json",
+  "title": "Architecture Mapping Constraint DSL",
+  "type": "object",
+  "required": ["dsl_version", "task_id", "task_type", "interview", "ontology", "fidelity", "detail", "geometry", "analysis", "graphics", "layout", "text", "output", "prohibitions"],
+  "properties": {
+    "dsl_version": {"const": "1.0.0"},
+    "task_id": {"type": "string", "minLength": 1},
+    "task_type": {"enum": ["classification", "reverse_engineering", "mapping", "image_generation", "image_edit", "board_layout", "final_prompt", "dataset", "evolution"]},
+    "interview": {
+      "type": "object",
+      "required": ["rounds_completed", "ready_for_production"],
+      "properties": {"rounds_completed": {"type": "integer", "minimum": 0, "maximum": 7}, "ready_for_production": {"type": "boolean"}},
+      "additionalProperties": false
+    },
+    "ontology": {
+      "type": "object",
+      "required": ["primary_class", "drawing_subtype", "drawing_forms"],
+      "properties": {
+        "primary_class": {"enum": ["LOC", "HIS", "ISS", "SKT", "MAS", "FLW", "EXP", "BEH", "REN"]},
+        "secondary_classes": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "drawing_subtype": {"type": "string", "minLength": 1},
+        "drawing_forms": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "fidelity": {"enum": ["F0", "F1", "F2", "F3"]},
+    "detail": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["D0", "D1", "D2", "D3", "D4"]}},
+    "geometry": {
+      "type": "object",
+      "required": ["locked", "editable", "projection", "shared_view_group"],
+      "properties": {
+        "locked": {"type": "array", "items": {"type": "string"}},
+        "editable": {"type": "array", "items": {"type": "string"}},
+        "projection": {"type": "string"},
+        "shared_view_group": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "analysis": {
+      "type": "object",
+      "required": ["claim", "evidence_refs", "logic_chain"],
+      "properties": {
+        "claim": {"type": "string"},
+        "evidence_refs": {"type": "array", "items": {"type": "string"}},
+        "logic_chain": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "graphics": {
+      "type": "object",
+      "required": ["grammar_pattern", "style_token", "figure_ground", "line_weights_mm", "semantic_colors"],
+      "properties": {
+        "grammar_pattern": {"type": "string"},
+        "style_token": {"type": "string"},
+        "secondary_style_token": {"type": ["string", "null"]},
+        "figure_ground": {"type": "object"},
+        "line_weights_mm": {"type": "array", "minItems": 2, "items": {"type": "number", "exclusiveMinimum": 0}},
+        "semantic_colors": {"type": "object", "additionalProperties": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"}}
+      },
+      "additionalProperties": false
+    },
+    "layout": {
+      "type": "object",
+      "required": ["canvas", "orientation", "panels", "reading_order"],
+      "properties": {
+        "canvas": {"type": "string"},
+        "orientation": {"enum": ["portrait", "landscape", "square", "custom"]},
+        "panels": {"type": "array", "minItems": 1, "items": {"type": "object"}},
+        "reading_order": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "text": {
+      "type": "object",
+      "required": ["language", "render_strategy", "hierarchy"],
+      "properties": {
+        "language": {"enum": ["zh-CN", "zh-CN+en", "en"]},
+        "render_strategy": {"enum": ["svg_overlay", "pptx_overlay", "model_short_labels", "none"]},
+        "hierarchy": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "output": {
+      "type": "object",
+      "required": ["formats", "dpi", "editable_text"],
+      "properties": {
+        "formats": {"type": "array", "minItems": 1, "items": {"enum": ["PNG", "JPG", "PDF", "SVG", "PPTX"]}},
+        "dpi": {"type": "integer", "minimum": 72, "maximum": 1200},
+        "editable_text": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "rag_evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source_id", "record_or_section", "adopted_feature", "confidence"],
+        "properties": {
+          "source_id": {"type": "string"}, "record_or_section": {"type": "string"},
+          "adopted_feature": {"type": "string"}, "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "prohibitions": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "status": {
+      "type": "object",
+      "properties": {
+        "confirmed": {"type": "array", "items": {"type": "string"}},
+        "defaults": {"type": "array", "items": {"type": "string"}},
+        "unknowns": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

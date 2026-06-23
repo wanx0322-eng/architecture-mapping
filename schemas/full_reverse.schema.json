@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.example/architecture-mapping-zh/full_reverse.schema.json",
+  "title": "Full Image Reverse Engineering",
+  "type": "object",
+  "required": ["metadata", "domain_specific_analysis", "visual_elements", "content_and_subjects", "environment_and_space", "text_data", "global_summary"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["image_category", "mood_atmosphere"],
+      "properties": {"image_category": {"type": "string"}, "mood_atmosphere": {"type": "string"}},
+      "additionalProperties": false
+    },
+    "domain_specific_analysis": {
+      "type": "object",
+      "required": ["architectural_diagram_attributes"],
+      "properties": {
+        "data_chart_attributes": {"type": "object"},
+        "cgi_3d_attributes": {"type": "object"},
+        "document_attributes": {"type": "object"},
+        "architectural_diagram_attributes": {
+          "type": "object",
+          "required": ["diagram_type", "base_map", "projection", "analysis_framework", "layout_system", "line_and_symbol_system"],
+          "properties": {
+            "diagram_type": {"type": "string"},
+            "base_map": {"type": "string"},
+            "projection": {"type": "string"},
+            "analysis_framework": {"type": "string"},
+            "map_description": {"type": "string"},
+            "layout_system": {"type": "string"},
+            "line_and_symbol_system": {"type": "string"},
+            "text_explanation_system": {"type": "string"},
+            "diagram_expression": {"type": "string"}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "visual_elements": {
+      "type": "object",
+      "required": ["color_palette", "lighting", "composition"],
+      "properties": {
+        "color_palette": {"type": "array", "items": {"type": "string"}},
+        "lighting": {"type": "string"},
+        "composition": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "content_and_subjects": {"type": "array", "items": {"type": "object"}},
+    "environment_and_space": {"type": "object"},
+    "text_data": {"type": "object", "required": ["extracted_text"], "properties": {"extracted_text": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": false},
+    "global_summary": {"type": "string"}
+  },
+  "additionalProperties": false
+}
+

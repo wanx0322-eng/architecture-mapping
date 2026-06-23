@@ -1,0 +1,8 @@
+{
+  "black_white_accent": {"background": "#FFFFFF", "base": ["#111111", "#B8BEC5", "#E8EBEE"], "accent": ["#F2B544"]},
+  "site_analysis": {"background": "#FFFFFF", "base": ["#DCE8F2", "#E9ECEF"], "accent": ["#4E8FC8", "#E5B55D", "#80A86B"]},
+  "existing_problem_blue": {"background": "#0D1B2A", "base": ["#FFFFFF", "#5DADE2"], "accent": ["#00D4FF"]},
+  "existing_problem_red": {"background": "#1A0505", "base": ["#FFFFFF", "#CC4444"], "accent": ["#FF4D4D"]},
+  "klein_blue": {"background": "#FFFFFF", "base": ["#7A7F85", "#D7DADF"], "accent": ["#002FA7"]}
+}
+

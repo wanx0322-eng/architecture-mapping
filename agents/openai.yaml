@@ -1,0 +1,8 @@
+interface:
+  display_name: "Architecture Mapping ZH"
+  short_description: "Chinese architecture and landscape competition diagram MoE router"
+  brand_color: "#16A34A"
+  default_prompt: "Use $architecture-mapping-zh to analyze this competition diagram and route through evidence, figure-ground, style, RAG, validation, and quality review."
+
+policy:
+  allow_implicit_invocation: true

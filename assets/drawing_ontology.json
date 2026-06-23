@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "namespace": "architecture-mapping-zh",
+  "classes": [
+    {"id": "LOC", "label_zh": "场地区位", "purpose": "建立区域关系与可达性", "typical_evidence": ["行政边界", "道路网络", "公共交通", "时间圈"], "allowed_forms": ["区位图", "多尺度嵌套地图", "可达性圈层图"]},
+    {"id": "HIS", "label_zh": "历史文化", "purpose": "表达时间演化与文化资源", "typical_evidence": ["历史地图", "年代", "遗产点", "事件"], "allowed_forms": ["时间轴", "历史地图叠合", "文化节点图"]},
+    {"id": "ISS", "label_zh": "现状问题", "purpose": "用证据定位问题与机会", "typical_evidence": ["现状测绘", "环境数据", "照片", "行为观察"], "allowed_forms": ["诊断地图", "热点图", "照片注释图", "剖面诊断"]},
+    {"id": "SKT", "label_zh": "手绘构思", "purpose": "记录概念生成与空间意向", "typical_evidence": ["草图", "关键词", "设计原则"], "allowed_forms": ["概念草图", "拼贴", "策略图标组"]},
+    {"id": "MAS", "label_zh": "体块生成", "purpose": "说明形体操作及因果", "typical_evidence": ["场地边界", "退界", "日照", "功能关系"], "allowed_forms": ["分步轴测", "体块序列", "生成逻辑图"]},
+    {"id": "FLW", "label_zh": "功能流线", "purpose": "表达功能组织、路径与冲突", "typical_evidence": ["功能清单", "入口", "路径", "容量"], "allowed_forms": ["功能分区图", "流线图", "邻接矩阵"]},
+    {"id": "EXP", "label_zh": "爆炸图", "purpose": "分解层级、系统与构造", "typical_evidence": ["图层", "构件", "标高", "系统归属"], "allowed_forms": ["爆炸轴测", "分层地图", "系统拆解图"]},
+    {"id": "BEH", "label_zh": "人群行为", "purpose": "表达主体、活动、时段与空间响应", "typical_evidence": ["观察记录", "轨迹", "停留", "时段"], "allowed_forms": ["行为地图", "用户旅程", "时空热图"]},
+    {"id": "REN", "label_zh": "效果图", "purpose": "验证空间体验与设计意图", "typical_evidence": ["模型", "材质", "视点", "光照"], "allowed_forms": ["鸟瞰", "人视", "剖透视", "氛围拼贴"]}
+  ],
+  "relations": [
+    {"id": "supports", "domain": ["evidence"], "range": ["claim"]},
+    {"id": "responds_to", "domain": ["strategy"], "range": ["issue"]},
+    {"id": "derived_from", "domain": ["geometry", "diagram"], "range": ["source_asset"]},
+    {"id": "precedes", "domain": ["step"], "range": ["step"]},
+    {"id": "contains", "domain": ["board", "panel"], "range": ["diagram", "text", "legend"]}
+  ],
+  "rules": [
+    "每张图只允许一个 primary_class，可有多个 secondary_class",
+    "每个分析结论至少链接一个 evidence",
+    "复合展板按 panel 分解，不把效果图误作分析图",
+    "完整 56 子型以 references/drawing-types.md 为规范来源"
+  ]
+}

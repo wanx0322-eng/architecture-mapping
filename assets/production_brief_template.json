@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0.0",
+  "rounds_completed": 3,
+  "question_rounds": [
+    {
+      "round": 1,
+      "focus": "任务与真实基底",
+      "questions": ["本图的设计任务、输入基底和不可改变项是什么？"],
+      "answers": [],
+      "resolved_decisions": []
+    },
+    {
+      "round": 2,
+      "focus": "分析结论与证据",
+      "questions": ["希望观众首先读出的结论和可用证据图层是什么？"],
+      "answers": [],
+      "resolved_decisions": []
+    },
+    {
+      "round": 3,
+      "focus": "视觉与技术系统",
+      "questions": ["请选择图底关系、细节等级、版式和艺术媒介。"],
+      "answers": [],
+      "resolved_decisions": []
+    }
+  ],
+  "design_goal": "待确认",
+  "source_assets": [],
+  "classification": {
+    "primary_category": "场地区位",
+    "drawing_subtype": "LOC-01 多尺度定位链",
+    "drawing_forms": ["区位地图/主图"]
+  },
+  "fidelity_level": "F1",
+  "detail_levels": ["D0", "D1", "D2"],
+  "visual_system": {
+    "figure_ground": {},
+    "projection": "待确认",
+    "layout": {},
+    "palette": {},
+    "line_symbol": {},
+    "art_style": {},
+    "text_system": {}
+  },
+  "output_spec": {
+    "canvas": "待确认",
+    "resolution": "待确认",
+    "color_mode": "RGB",
+    "formats": ["PNG"],
+    "editable_text": true
+  },
+  "confirmed": [],
+  "defaults": [],
+  "unknowns": [],
+  "forbidden_fabrication": ["未提供的道路", "未提供的尺寸", "未提供的统计数据"],
+  "ready_to_produce": false
+}

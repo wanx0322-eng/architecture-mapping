@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.example/architecture-mapping-zh/eval_rubric.schema.json",
+  "title": "Mapping Eval Rubric Result",
+  "type": "object",
+  "required": ["schema_version", "task_id", "candidate_id", "hard_checks", "scores", "weighted_total", "decision", "repair_target"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "task_id": {"type": "string"},
+    "candidate_id": {"type": "string"},
+    "hard_checks": {"type": "array", "items": {"type": "object", "required": ["id", "passed", "evidence"], "properties": {"id": {"type": "string"}, "passed": {"type": "boolean"}, "evidence": {"type": "string"}}, "additionalProperties": false}},
+    "scores": {"type": "object", "required": ["evidence_geometry", "analysis_logic", "figure_ground_hierarchy", "legibility", "style_consistency", "production_readiness"], "additionalProperties": {"type": "number", "minimum": 0, "maximum": 100}},
+    "weighted_total": {"type": "number", "minimum": 0, "maximum": 100},
+    "decision": {"enum": ["pass", "revise", "block"]},
+    "repair_target": {"type": ["string", "null"]},
+    "feedback": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

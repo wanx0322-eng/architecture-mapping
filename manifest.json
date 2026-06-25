@@ -1,8 +1,8 @@
 {
   "name": "architecture-mapping-zh",
-  "adapter_version": "0.2.0",
+  "adapter_version": "0.3.0",
   "generated_for": "codex",
-  "generated_date": "2026-06-23",
+  "generated_date": "2026-06-25",
   "packaging": {
     "type": "single_codex_router_skill",
     "entrypoint": "skills/architecture-mapping-zh/SKILL.md",

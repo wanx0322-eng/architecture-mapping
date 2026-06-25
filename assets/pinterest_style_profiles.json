@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "activation": "opt_in_only",
+  "clusters": {
+    "minimal_grey_competition": {
+      "label": "minimal grey-white competition diagram",
+      "positive_terms": ["minimal grey-white competition diagram", "precise thin vector linework", "large white margins", "muted single accent"],
+      "negative_terms": ["no glossy gradient", "no saturated rainbow palette", "no decorative heavy outline"],
+      "suitable_for": ["site analysis", "figure-ground", "circulation", "competition board"]
+    },
+    "ecological_layered_wash": {
+      "label": "ecological layered wash",
+      "positive_terms": ["ecological layered wash", "muted sage and water-blue overlays", "translucent watercolor grain", "precise vector base map"],
+      "negative_terms": ["no photorealistic fake vegetation", "no neon green", "no glow effects"],
+      "suitable_for": ["ecology", "hydrology", "green infrastructure", "landscape strategy"]
+    },
+    "desaturated_paper_collage": {
+      "label": "desaturated paper collage",
+      "positive_terms": ["desaturated paper collage", "scanned paper texture", "masked photo fragments", "editorial numbered narrative"],
+      "negative_terms": ["no random people scale", "no scrapbook clutter", "no long generated text"],
+      "suitable_for": ["concept narrative", "historical context", "site atmosphere", "competition board"]
+    },
+    "precision_vector_analysis": {
+      "label": "precision vector analysis",
+      "positive_terms": ["precision vector analysis", "CAD-like line hierarchy", "consistent legends", "aligned analytical matrix"],
+      "negative_terms": ["no painterly blur", "no decorative texture", "no invented measurements"],
+      "suitable_for": ["technical analysis", "circulation", "land use", "constraints"]
+    },
+    "layered_landscape_axonometric": {
+      "label": "layered landscape axonometric",
+      "positive_terms": ["layered landscape axonometric", "exploded ecological systems", "consistent isometric view", "sparse side annotations"],
+      "negative_terms": ["no perspective drift", "no floating unrelated objects", "no inconsistent layer scale"],
+      "suitable_for": ["exploded diagram", "landscape systems", "construction sequence", "masterplan"]
+    },
+    "diagnostic_heat_overlay": {
+      "label": "diagnostic heat overlay",
+      "positive_terms": ["diagnostic heat overlay", "bounded translucent evidence zones", "explicit legend", "neutral grey context"],
+      "negative_terms": ["no fabricated heat values", "no rainbow spectrum", "no legendless gradient"],
+      "suitable_for": ["problem diagnosis", "risk mapping", "opportunity constraints", "activity intensity"]
+    },
+    "hand_drawn_mixed_media": {
+      "label": "hand-drawn mixed media",
+      "positive_terms": ["hand-drawn mixed media", "loose ink line", "marker wash", "precise vector underlay"],
+      "negative_terms": ["no childish doodle", "no geometry distortion", "no illegible handwriting"],
+      "suitable_for": ["concept sketch", "design evolution", "spatial sequence", "landscape character"]
+    },
+    "dark_high_contrast_narrative": {
+      "label": "dark high-contrast narrative",
+      "positive_terms": ["dark high-contrast narrative", "charcoal ground", "pale precise linework", "single luminous accent"],
+      "negative_terms": ["no cyberpunk neon", "no lens flare", "no unreadable low-contrast labels"],
+      "suitable_for": ["night strategy", "infrastructure narrative", "urban systems", "presentation cover"]
+    }
+  }
+}

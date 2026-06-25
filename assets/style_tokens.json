@@ -1,56 +1,290 @@
 {
-  "schema_version": "1.0.0",
-  "token_sets": {
-    "rational_blueprint": {
-      "label_zh": "理性蓝灰制图",
-      "palette": {"paper": "#F7F8F8", "ground": "#D9DEE2", "ink": "#33414D", "accent": "#4E89B8", "warning": "#D26A4A"},
-      "line_weights_mm": [0.13, 0.18, 0.25, 0.35],
-      "edges": "精确硬边",
-      "texture": "极低颗粒",
-      "shadow": "仅轴测接触阴影",
-      "typography": "中文无衬线，数字等宽",
-      "anti_tokens": ["霓虹", "重油画", "无依据光晕"]
-    },
-    "competition_minimal": {
-      "label_zh": "竞赛极简灰白",
-      "palette": {"paper": "#FAFAF8", "ground": "#E5E5E1", "ink": "#4B4F52", "accent": "#7E98AC", "secondary": "#B8C7B0"},
-      "line_weights_mm": [0.12, 0.18, 0.28],
-      "edges": "细线清晰",
-      "texture": "无纹理或纸张微纹理",
-      "shadow": "柔和短投影",
-      "typography": "标题高对比，正文紧凑",
-      "anti_tokens": ["满版渐变", "高饱和综合色", "厚重描边"]
-    },
-    "ecological_wash": {
-      "label_zh": "生态淡彩罩染",
-      "palette": {"paper": "#F4F1E9", "ground": "#D8D4C9", "vegetation": "#91A783", "water": "#9DB7C5", "accent": "#D3A15C"},
-      "line_weights_mm": [0.15, 0.22, 0.32],
-      "edges": "矢量骨架叠加半透明软边",
-      "texture": "低密度水彩颗粒",
-      "shadow": "植物与地形轻阴影",
-      "typography": "克制中文无衬线",
-      "anti_tokens": ["照片级假植被", "过度晕染", "遮盖基础轮廓"]
-    },
-    "diagnostic_heat": {
-      "label_zh": "问题诊断热区",
-      "palette": {"paper": "#F4F3F0", "ground": "#B8B8B5", "low": "#E8B36A", "medium": "#D97A45", "high": "#B64A3A"},
-      "line_weights_mm": [0.18, 0.25, 0.35],
-      "edges": "证据边界硬边或受控羽化",
-      "texture": "低颗粒透明罩层",
-      "shadow": "无装饰阴影",
-      "typography": "结论优先，图例明确",
-      "anti_tokens": ["伪造热力数值", "彩虹色带", "无图例渐变"]
-    },
-    "collage_narrative": {
-      "label_zh": "叙事拼贴",
-      "palette": {"paper": "#EEE9DF", "ink": "#343434", "photo": "去饱和", "accent": "#C66E52", "vegetation": "#87957A"},
-      "line_weights_mm": [0.16, 0.24, 0.4],
-      "edges": "照片蒙版与线稿并置",
-      "texture": "纸张、扫描与低强度颗粒",
-      "shadow": "分层纸片阴影",
-      "typography": "短句与编号叙事",
-      "anti_tokens": ["随机人物比例", "无来源照片", "长段 AI 文字"]
-    }
-  },
-  "application_rule": "每个方案选择一个 primary token set；最多叠加一个 secondary set，冲突字段由 primary 决定。"
+    "schema_version":  "1.0.0",
+    "token_sets":  {
+                       "rational_blueprint":  {
+                                                  "label_zh":  "理性蓝灰制图",
+                                                  "palette":  {
+                                                                  "paper":  "#F7F8F8",
+                                                                  "ground":  "#D9DEE2",
+                                                                  "ink":  "#33414D",
+                                                                  "accent":  "#4E89B8",
+                                                                  "warning":  "#D26A4A"
+                                                              },
+                                                  "line_weights_mm":  [
+                                                                          0.13,
+                                                                          0.18,
+                                                                          0.25,
+                                                                          0.35
+                                                                      ],
+                                                  "edges":  "精确硬边",
+                                                  "texture":  "极低颗粒",
+                                                  "shadow":  "仅轴测接触阴影",
+                                                  "typography":  "中文无衬线，数字等宽",
+                                                  "anti_tokens":  [
+                                                                      "霓虹",
+                                                                      "重油画",
+                                                                      "无依据光晕"
+                                                                  ]
+                                              },
+                       "competition_minimal":  {
+                                                   "label_zh":  "竞赛极简灰白",
+                                                   "palette":  {
+                                                                   "paper":  "#FAFAF8",
+                                                                   "ground":  "#E5E5E1",
+                                                                   "ink":  "#4B4F52",
+                                                                   "accent":  "#7E98AC",
+                                                                   "secondary":  "#B8C7B0"
+                                                               },
+                                                   "line_weights_mm":  [
+                                                                           0.12,
+                                                                           0.18,
+                                                                           0.28
+                                                                       ],
+                                                   "edges":  "细线清晰",
+                                                   "texture":  "无纹理或纸张微纹理",
+                                                   "shadow":  "柔和短投影",
+                                                   "typography":  "标题高对比，正文紧凑",
+                                                   "anti_tokens":  [
+                                                                       "满版渐变",
+                                                                       "高饱和综合色",
+                                                                       "厚重描边"
+                                                                   ]
+                                               },
+                       "ecological_wash":  {
+                                               "label_zh":  "生态淡彩罩染",
+                                               "palette":  {
+                                                               "paper":  "#F4F1E9",
+                                                               "ground":  "#D8D4C9",
+                                                               "vegetation":  "#91A783",
+                                                               "water":  "#9DB7C5",
+                                                               "accent":  "#D3A15C"
+                                                           },
+                                               "line_weights_mm":  [
+                                                                       0.15,
+                                                                       0.22,
+                                                                       0.32
+                                                                   ],
+                                               "edges":  "矢量骨架叠加半透明软边",
+                                               "texture":  "低密度水彩颗粒",
+                                               "shadow":  "植物与地形轻阴影",
+                                               "typography":  "克制中文无衬线",
+                                               "anti_tokens":  [
+                                                                   "照片级假植被",
+                                                                   "过度晕染",
+                                                                   "遮盖基础轮廓"
+                                                               ]
+                                           },
+                       "diagnostic_heat":  {
+                                               "label_zh":  "问题诊断热区",
+                                               "palette":  {
+                                                               "paper":  "#F4F3F0",
+                                                               "ground":  "#B8B8B5",
+                                                               "low":  "#E8B36A",
+                                                               "medium":  "#D97A45",
+                                                               "high":  "#B64A3A"
+                                                           },
+                                               "line_weights_mm":  [
+                                                                       0.18,
+                                                                       0.25,
+                                                                       0.35
+                                                                   ],
+                                               "edges":  "证据边界硬边或受控羽化",
+                                               "texture":  "低颗粒透明罩层",
+                                               "shadow":  "无装饰阴影",
+                                               "typography":  "结论优先，图例明确",
+                                               "anti_tokens":  [
+                                                                   "伪造热力数值",
+                                                                   "彩虹色带",
+                                                                   "无图例渐变"
+                                                               ]
+                                           },
+                       "collage_narrative":  {
+                                                 "label_zh":  "叙事拼贴",
+                                                 "palette":  {
+                                                                 "paper":  "#EEE9DF",
+                                                                 "ink":  "#343434",
+                                                                 "photo":  "去饱和",
+                                                                 "accent":  "#C66E52",
+                                                                 "vegetation":  "#87957A"
+                                                             },
+                                                 "line_weights_mm":  [
+                                                                         0.16,
+                                                                         0.24,
+                                                                         0.4
+                                                                     ],
+                                                 "edges":  "照片蒙版与线稿并置",
+                                                 "texture":  "纸张、扫描与低强度颗粒",
+                                                 "shadow":  "分层纸片阴影",
+                                                 "typography":  "短句与编号叙事",
+                                                 "anti_tokens":  [
+                                                                     "随机人物比例",
+                                                                     "无来源照片",
+                                                                     "长段 AI 文字"
+                                                                 ]
+                                             }
+                   },
+    "application_rule":  "每个方案选择一个 primary token set；最多叠加一个 secondary set，冲突字段由 primary 决定。",
+    "pinterest_activation_rule":  "style_source=pinterest_dataset",
+    "pinterest_token_sets":  {
+                                 "minimal_grey_competition":  {
+                                                                  "label":  "minimal grey-white competition diagram",
+                                                                  "positive_terms":  [
+                                                                                         "minimal grey-white competition diagram",
+                                                                                         "precise thin vector linework",
+                                                                                         "large white margins",
+                                                                                         "muted single accent"
+                                                                                     ],
+                                                                  "negative_terms":  [
+                                                                                         "no glossy gradient",
+                                                                                         "no saturated rainbow palette",
+                                                                                         "no decorative heavy outline"
+                                                                                     ],
+                                                                  "suitable_for":  [
+                                                                                       "site analysis",
+                                                                                       "figure-ground",
+                                                                                       "circulation",
+                                                                                       "competition board"
+                                                                                   ]
+                                                              },
+                                 "ecological_layered_wash":  {
+                                                                 "label":  "ecological layered wash",
+                                                                 "positive_terms":  [
+                                                                                        "ecological layered wash",
+                                                                                        "muted sage and water-blue overlays",
+                                                                                        "translucent watercolor grain",
+                                                                                        "precise vector base map"
+                                                                                    ],
+                                                                 "negative_terms":  [
+                                                                                        "no photorealistic fake vegetation",
+                                                                                        "no neon green",
+                                                                                        "no glow effects"
+                                                                                    ],
+                                                                 "suitable_for":  [
+                                                                                      "ecology",
+                                                                                      "hydrology",
+                                                                                      "green infrastructure",
+                                                                                      "landscape strategy"
+                                                                                  ]
+                                                             },
+                                 "desaturated_paper_collage":  {
+                                                                   "label":  "desaturated paper collage",
+                                                                   "positive_terms":  [
+                                                                                          "desaturated paper collage",
+                                                                                          "scanned paper texture",
+                                                                                          "masked photo fragments",
+                                                                                          "editorial numbered narrative"
+                                                                                      ],
+                                                                   "negative_terms":  [
+                                                                                          "no random people scale",
+                                                                                          "no scrapbook clutter",
+                                                                                          "no long generated text"
+                                                                                      ],
+                                                                   "suitable_for":  [
+                                                                                        "concept narrative",
+                                                                                        "historical context",
+                                                                                        "site atmosphere",
+                                                                                        "competition board"
+                                                                                    ]
+                                                               },
+                                 "precision_vector_analysis":  {
+                                                                   "label":  "precision vector analysis",
+                                                                   "positive_terms":  [
+                                                                                          "precision vector analysis",
+                                                                                          "CAD-like line hierarchy",
+                                                                                          "consistent legends",
+                                                                                          "aligned analytical matrix"
+                                                                                      ],
+                                                                   "negative_terms":  [
+                                                                                          "no painterly blur",
+                                                                                          "no decorative texture",
+                                                                                          "no invented measurements"
+                                                                                      ],
+                                                                   "suitable_for":  [
+                                                                                        "technical analysis",
+                                                                                        "circulation",
+                                                                                        "land use",
+                                                                                        "constraints"
+                                                                                    ]
+                                                               },
+                                 "layered_landscape_axonometric":  {
+                                                                       "label":  "layered landscape axonometric",
+                                                                       "positive_terms":  [
+                                                                                              "layered landscape axonometric",
+                                                                                              "exploded ecological systems",
+                                                                                              "consistent isometric view",
+                                                                                              "sparse side annotations"
+                                                                                          ],
+                                                                       "negative_terms":  [
+                                                                                              "no perspective drift",
+                                                                                              "no floating unrelated objects",
+                                                                                              "no inconsistent layer scale"
+                                                                                          ],
+                                                                       "suitable_for":  [
+                                                                                            "exploded diagram",
+                                                                                            "landscape systems",
+                                                                                            "construction sequence",
+                                                                                            "masterplan"
+                                                                                        ]
+                                                                   },
+                                 "diagnostic_heat_overlay":  {
+                                                                 "label":  "diagnostic heat overlay",
+                                                                 "positive_terms":  [
+                                                                                        "diagnostic heat overlay",
+                                                                                        "bounded translucent evidence zones",
+                                                                                        "explicit legend",
+                                                                                        "neutral grey context"
+                                                                                    ],
+                                                                 "negative_terms":  [
+                                                                                        "no fabricated heat values",
+                                                                                        "no rainbow spectrum",
+                                                                                        "no legendless gradient"
+                                                                                    ],
+                                                                 "suitable_for":  [
+                                                                                      "problem diagnosis",
+                                                                                      "risk mapping",
+                                                                                      "opportunity constraints",
+                                                                                      "activity intensity"
+                                                                                  ]
+                                                             },
+                                 "hand_drawn_mixed_media":  {
+                                                                "label":  "hand-drawn mixed media",
+                                                                "positive_terms":  [
+                                                                                       "hand-drawn mixed media",
+                                                                                       "loose ink line",
+                                                                                       "marker wash",
+                                                                                       "precise vector underlay"
+                                                                                   ],
+                                                                "negative_terms":  [
+                                                                                       "no childish doodle",
+                                                                                       "no geometry distortion",
+                                                                                       "no illegible handwriting"
+                                                                                   ],
+                                                                "suitable_for":  [
+                                                                                     "concept sketch",
+                                                                                     "design evolution",
+                                                                                     "spatial sequence",
+                                                                                     "landscape character"
+                                                                                 ]
+                                                            },
+                                 "dark_high_contrast_narrative":  {
+                                                                      "label":  "dark high-contrast narrative",
+                                                                      "positive_terms":  [
+                                                                                             "dark high-contrast narrative",
+                                                                                             "charcoal ground",
+                                                                                             "pale precise linework",
+                                                                                             "single luminous accent"
+                                                                                         ],
+                                                                      "negative_terms":  [
+                                                                                             "no cyberpunk neon",
+                                                                                             "no lens flare",
+                                                                                             "no unreadable low-contrast labels"
+                                                                                         ],
+                                                                      "suitable_for":  [
+                                                                                           "night strategy",
+                                                                                           "infrastructure narrative",
+                                                                                           "urban systems",
+                                                                                           "presentation cover"
+                                                                                       ]
+                                                                  }
+                             }
 }

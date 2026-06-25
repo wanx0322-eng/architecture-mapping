@@ -1,8 +1,8 @@
 interface:
   display_name: "Architecture Mapping ZH"
-  short_description: "Chinese architecture and landscape competition diagram MoE router"
+  short_description: "Architecture and landscape diagram analysis with opt-in Pinterest style priors"
   brand_color: "#16A34A"
-  default_prompt: "Use $architecture-mapping-zh to analyze this competition diagram and route through evidence, figure-ground, style, RAG, validation, and quality review."
+  default_prompt: "Use $architecture-mapping-zh to analyze or produce this competition diagram through evidence, figure-ground, RAG, validation, model prompts, and quality review. Apply Pinterest dataset styles only when I explicitly request them."
 
 policy:
   allow_implicit_invocation: true

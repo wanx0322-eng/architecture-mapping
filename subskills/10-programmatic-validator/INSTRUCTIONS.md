@@ -19,3 +19,6 @@ python ../../scripts/programmatic_validator.py --input <constraint-dsl.json> --o
 ## 输出与路由
 
 输出 `valid`、`schema_errors`、`semantic_checks` 和 `repair_targets`。任何硬检查失败都阻止出图或交付，并把任务返回最早责任专家；不得用高审美分覆盖程序错误。
+## Pinterest 校验
+
+当 `style_source=pinterest_dataset` 时，检查风格簇是否存在、强度是否在 0–1、至少两个不同来源是否可追溯，以及 Pinterest 风格是否覆盖 F2/F3 几何与锁定项。未指定 `style_source` 时，禁止出现 `pinterest_token_sets` 中的隐式风格引用。

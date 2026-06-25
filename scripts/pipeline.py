@@ -19,11 +19,37 @@ LOCAL_DEPS = Path(__file__).resolve().parents[1] / ".deps"
 if LOCAL_DEPS.exists():
     sys.path.insert(0, str(LOCAL_DEPS))
 
-import imagehash
-import numpy as np
-import requests
-from jsonschema import Draft202012Validator, FormatChecker
-from PIL import Image
+try:
+    import imagehash
+except ModuleNotFoundError:
+    imagehash = None
+try:
+    import numpy as np
+except ModuleNotFoundError:
+    np = None
+try:
+    import requests
+except ModuleNotFoundError:
+    requests = None
+try:
+    from jsonschema import Draft202012Validator, FormatChecker
+except ModuleNotFoundError:
+    Draft202012Validator = None
+    FormatChecker = None
+try:
+    from PIL import Image
+except ModuleNotFoundError:
+    Image = None
+
+
+def require_dependencies(feature: str, **dependencies: Any) -> None:
+    missing = [package for package, module in dependencies.items() if module is None]
+    if missing:
+        packages = ", ".join(missing)
+        raise RuntimeError(
+            f"{feature} requires optional packages: {packages}. "
+            "Install requirements.txt or run this command in the project virtual environment."
+        )
 
 
 CATEGORIES = [
@@ -170,6 +196,7 @@ def cmd_ingest(args: argparse.Namespace) -> None:
 
 
 def thumbnail_bytes(url: str, timeout: int) -> bytes:
+    require_dependencies("thumbnail download", requests=requests)
     response = requests.get(url, timeout=timeout, headers={"User-Agent": USER_AGENT}, stream=True)
     response.raise_for_status()
     content = response.content
@@ -179,6 +206,7 @@ def thumbnail_bytes(url: str, timeout: int) -> bytes:
 
 
 def cmd_thumbnails(args: argparse.Namespace) -> None:
+    require_dependencies("thumbnail processing", imagehash=imagehash, Pillow=Image)
     root = Path(args.root)
     ensure_dirs(root)
     rows = read_jsonl(root / "raw/pins.jsonl")
@@ -365,6 +393,7 @@ def project_root() -> Path:
 
 
 def validator(name: str) -> Draft202012Validator:
+    require_dependencies("JSON schema validation", jsonschema=Draft202012Validator)
     schema = read_json(project_root() / "schemas" / name)
     return Draft202012Validator(schema, format_checker=FormatChecker())
 
@@ -414,6 +443,7 @@ def cmd_import_analysis(args: argparse.Namespace) -> None:
 
 
 def image_features(path: str) -> np.ndarray:
+    require_dependencies("visual feature extraction", numpy=np, Pillow=Image)
     with Image.open(path) as image:
         image = image.convert("RGB").resize((64, 64), Image.Resampling.BILINEAR)
         hsv = np.asarray(image.convert("HSV"), dtype=np.float32)

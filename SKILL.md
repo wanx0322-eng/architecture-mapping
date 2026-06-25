@@ -1,9 +1,8 @@
 ---
 name: architecture-mapping-zh
-description: Chinese architecture and landscape competition diagram MoE router for mapping analysis, figure-ground graphics, style/layout, RAG evidence, Constraint DSL validation, model prompts, and quality review.
-compatibility: Python 3.10+; Pillow, ImageHash, jsonschema, requests; optional OpenCLIP
+description: Use when analyzing or producing Chinese architecture and landscape competition diagrams, including mapping analysis, figure-ground graphics, evidence-grounded RAG, Constraint DSL validation, model prompts, quality review, or opt-in Pinterest-derived landscape diagram styles.
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
   display_name: "Architecture Mapping ZH"
   aliases:
     - Arc
@@ -190,3 +189,47 @@ python scripts/import_local_archives.py --dataset dataset `
 先运行 `evals/evals.json` 中的三个任务，再扩展到九类。客观检查 JSON 合法性、
 分类值、中文文本、多模型输出和禁止虚构；视觉质量由人工查看器评审。
 
+
+## Pinterest 0.3 风格扩展
+
+Pinterest 风格默认关闭。只有用户明确要求 Pinterest 数据集风格，或提供
+`style_source=pinterest_dataset` 时才启用；未启用时继续使用原有 `token_sets`。
+
+启用后按顺序执行：
+
+1. `09-knowledge-retrieval` 读取 `assets/rag_manifest.json`、运行时聚类和至少两个不同 Pin 来源；
+2. `05-style-layout` 从 `assets/pinterest_style_profiles.json` 与
+   `assets/style_tokens.json` 的 `pinterest_token_sets` 选择风格；
+3. `10-programmatic-validator` 检查风格来源、簇名称、强度和 F2/F3 几何优先级；
+4. `06-model-production` 分别编译 Gemini、GPT Image、Midjourney 提示词；
+5. `07-quality-critic` 独立评分风格一致性，并确认风格没有覆盖证据与几何约束。
+
+标准输入：
+
+```json
+{
+  "style_source": "pinterest_dataset",
+  "style_cluster": "auto",
+  "style_strength": 0.7
+}
+```
+
+- `style_cluster=auto`：根据图纸主类、子型、投影和媒介自动选择风格簇。
+- 显式簇：使用 `references/pinterest-style-system.md` 中的八种风格之一。
+- `style_strength`：`0–0.39=low`、`0.4–0.79=medium`、`0.8–1.0=high`。
+- 自动选择风格簇时必须输出选择理由、候选簇、冲突项和最终 Style Token。
+- 只抽象媒介、边缘、纹理、阴影、色板、图底和版式；不得复制参考项目的几何、道路、
+  文字、数据、功能或设计内容。
+- Pinterest 先验不得覆盖 F2/F3 几何、用户锁定项、真实 GIS 数据和证据链。
+
+运行时数据默认位于 `architecture-mapping-zh-runtime/`。若目录不存在，仍可使用 Skill
+内置的统计风格档案，但必须标记“未进行样本级 RAG 检索”。
+
+```powershell
+python scripts/pipeline_v030.py collection-status --root architecture-mapping-zh-runtime
+python scripts/pipeline_v030.py quality-gate --root architecture-mapping-zh-runtime
+python scripts/pipeline_v030.py compile-prompts --root architecture-mapping-zh-runtime `
+  --style-source pinterest_dataset `
+  --style-cluster ecological_layered_wash `
+  --style-strength 0.7
+```

@@ -20,3 +20,6 @@
 - 重复失败达到 3 次 → `evolution-governance`
 
 每个修订循环保存失败检查、分数、修复层和改动摘要。最多两轮定向修订；仍未达标则向用户报告阻碍或呈现候选取舍。
+## Pinterest 风格附加检查
+
+当 `style_source=pinterest_dataset` 时，检查 Pinterest 风格一致性，包括媒介、边缘、纹理、阴影、色板、图底、版式与反向词。风格分只属于“艺术风格一致性”维度，不得覆盖几何忠实度。复制代表样本内容、伪造样本级 RAG、风格导致 F2/F3 漂移，或未启用却隐式应用 Pinterest Style Token，均为 `block`。

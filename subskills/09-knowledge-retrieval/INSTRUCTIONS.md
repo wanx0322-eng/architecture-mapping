@@ -18,3 +18,6 @@
 - 不把视觉相似当作事实证据。
 - 找不到来源时标记未知，不虚构引用。
 - Pinterest 与本地合集中只返回索引和特征，不把高清原图嵌入 Skill。
+## Pinterest 运行时 RAG
+
+当 `style_source=pinterest_dataset` 时，同时读取 `../../assets/rag_manifest_v030.json` 与运行时 `architecture-mapping-zh-runtime/clusters/`。按 `primary_category`、`drawing_subtype`、`projection`、`style_cluster` 过滤，至少返回两个不同 Pin ID。运行时索引不存在时，退化为内置风格统计并标记 `sample_level_rag=false`，不得伪造代表样本。

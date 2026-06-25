@@ -34,3 +34,11 @@
 - 输出紧凑自然语言提示词和参数建议。
 - 不宣称能精确复现中文正文或真实 GIS 数据。
 - 建议使用参考图权重、固定比例和较低风格化强度。
+## Pinterest 数据集风格编译
+
+仅在 `style_source=pinterest_dataset` 时启用。读取 `pinterest_style_profiles.json`，把簇特征拆成媒介、边缘、纹理、阴影、色板、图底、版式密度和反向词。`style_strength` 编译为 low / medium / high 三档，但任何强度都不得覆盖 F2/F3 几何、证据链、锁定道路、比例或真实 GIS 数据。
+
+- Gemini：把风格写入结构化 `style_reference`，逐项声明保留项和禁止项。
+- GPT Image：把输入角色、不可编辑几何、可编辑视觉层和 negative constraints 分段。
+- Midjourney：压缩为可观察视觉短语，降低 stylize，禁止声称精确复刻文字或数据。
+- 不写笼统“Pinterest 风”“高级感”；不得复制任何代表 Pin 的场地、道路、文字、功能、数据或设计方案。

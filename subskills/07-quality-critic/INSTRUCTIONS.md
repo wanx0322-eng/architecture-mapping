@@ -25,3 +25,6 @@
 - 选择、合并、返工或询问用户的决策；
 - 下一轮只修改的具体问题清单。
 - 通过 `../../schemas/eval_rubric.schema.json` 的结果，并把修订返回最早责任专家。
+## Pinterest 风格评审
+
+当 `style_source=pinterest_dataset` 时，增加 Pinterest 风格一致性检查：媒介、边缘、纹理、阴影、色板、图底、版式和反向词是否匹配所选簇。该检查不得覆盖几何忠实度；若风格导致 F2/F3 几何、真实数据、证据链或可读性下降，退回 `05-style-layout` 或 `06-model-production`。

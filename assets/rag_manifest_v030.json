@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.1.0",
+  "retrieval_policy": {
+    "top_k": 8,
+    "minimum_distinct_sources": 2,
+    "require_source_id": true,
+    "allow_unverified_claims": false,
+    "pinterest_style_opt_in_only": true
+  },
+  "collections": [
+    {"id": "technical-detail", "type": "normative", "path": "references/technical-detail-spec.md"},
+    {"id": "pinterest-style-clusters", "type": "runtime_style_index", "path": "architecture-mapping-zh-runtime/clusters/pinterest_style_clusters.json"},
+    {"id": "pinterest-style-assignments", "type": "runtime_sample_index", "path": "architecture-mapping-zh-runtime/clusters/pinterest_style_assignments.jsonl"},
+    {"id": "pinterest-records", "type": "runtime_source_index", "path": "architecture-mapping-zh-runtime/records/core"}
+  ],
+  "selection_rule": {
+    "filters": ["primary_category", "drawing_subtype", "projection", "style_cluster"],
+    "minimum_representatives": 2,
+    "forbid_copying": ["project_geometry", "labels", "data", "program", "design_content"]
+  }
+}
